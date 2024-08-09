@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sensei from './Sensei';
 import axios from 'axios';
 import AllBlackBeltStu from './AllBlackBeltStu';
+import { USER_API_END_POINT } from '@/context/contex';
 
 function Team() {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,7 @@ function Team() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/user/users", { withCredentials: true });
+        const response = await axios.get(`${USER_API_END_POINT}/users`, { withCredentials: true });
         setUsers(response.data.users);
       } catch (error) {
         console.error("Error fetching users:", error);

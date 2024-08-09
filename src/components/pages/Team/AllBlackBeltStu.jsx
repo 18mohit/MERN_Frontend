@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setsearchStudentByText } from "@/store/sensei-student-Slice";
+import { BLACKSTU_API_END_POINT } from "@/context/contex";
 
 function AllBlackBeltStu() {
   const [blackStudent, setBlackStudent] = useState([]);
@@ -13,7 +14,7 @@ function AllBlackBeltStu() {
     const fetchBlackStu = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/v1/senseistu/getAllStu",
+          `${BLACKSTU_API_END_POINT}/getAllStu`,
           { withCredentials: true }
         );
         setBlackStudent(response.data.students);
