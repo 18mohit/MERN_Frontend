@@ -1,0 +1,146 @@
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createOwner, loginOwner } from '../../../api'; // Adjust the path if necessary
+import { login } from '../../../store/authSlice';
+
+const SignInSignUp = () => {
+  const { role } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [formData, setFormData] = useState({
+    fullname: '',
+    email: '',
+    password: '',
+    photo: null,
+    certificate: null,
+  });
+
+  const toggleForm = () => {
+    setIsSignUp(!isSignUp);
+  };
+
+  const roleText = role.charAt(0).toUpperCase() + role.slice(1);
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+  };
+
+  const handleFileChange = (e) => {
+    const { id, files } = e.target;
+    setFormData({
+      ...formData,
+      [id]: files[0],
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let response;
+      if (isSignUp) {
+        if (role === 'owner') {
+          response = await createOwner(formData);
+        } else {
+          // Add logic for sensei and student sign-up
+        }
+      } else {
+        if (role === 'owner') {
+          response = await loginOwner(formData);
+        } else {
+          // Add logic for sensei and student sign-in
+        }
+      }
+      console.log(response); // Handle success (e.g., redirect or show success message)
+      dispatch(login(response.data)); // Dispatch login action
+      navigate('/'); // Redirect to the home page after successful sign-up/sign-in
+    } catch (error) {
+      console.error('Error:', error); // Handle error (e.g., show error message)
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
+        <h2 className="text-2xl font-bold text-center">
+          SignIn for..
+          <span className="text-yellow-400">{roleText}</span>
+        </h2>
+        <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-sm font-medium text-gray-700" htmlFor="fullname">
+                Name
+              </label>
+              <input
+                type="text"
+                id="fullname"
+                value={formData.fullname}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 mt-1 border rounded shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 mt-1 border rounded shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+          {isSignUp && role !== 'owner' && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-700" htmlFor="photo">
+                  Your Photo
+                </label>
+                <input
+                  type="file"
+                  id="photo"
+                  onChange={handleFileChange}
+                  className="w-full px-3 py-2 mt-1 border rounded shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700" htmlFor="certificate">
+                  Your BlackBelt certificate
+                </label>
+                <input
+                  type="file"
+                  id="certificate"
+                  onChange={handleFileChange}
+                  className="w-full px-3 py-2 mt-1 border rounded shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+            </>
+          )}
+          <button
+            type="submit"
+            className="w-full px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            {isSignUp ? 'Sign Up' : 'Sign In'}
+          </button>
+        </form>
+        <p className="text-sm text-center text-gray-600">
+           Don't have an account?{'  '}
+          <button
+            onClick={toggleForm}
+            className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none"
+          >
+            Sign up
+          </button>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default SignInSignUp;

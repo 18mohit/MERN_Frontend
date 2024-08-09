@@ -1,0 +1,36 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+  }
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.tagline {
+    text-shadow: black 1px -2px 4px, rgb(36, 48, 48) 1px -1px 3px,
+      rgb(25, 195, 210) 1px -1px 7px;
+  }
+
+.nska{
+  text-shadow: rgb(114, 61, 163) 1px -2px 3px, rgb(50, 48, 48) 1px -1px 3px;
+}
+::selection {
+    color: rgb(201, 211, 63);
+  }
+  .studentname {
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(173, 216, 230); /* Light teal color */
+    text-shadow: 
+      1px 1px 0 rgb(131, 167, 178),   /* Layer 1: Top-left shadow */
+      1px 1px 0 rgb(89, 118, 126),   /* Layer 2: Second top-left shadow */
+      1px 1px 0 rgb(47, 69, 74),   /* Layer 3: Third top-left shadow */
+      1px 1px 0 rgb(15, 23, 42);   /* Layer 4: Fourth top-left shadow */
+  }
+  
+  
+  
+  
