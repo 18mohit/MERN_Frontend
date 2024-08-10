@@ -16,7 +16,7 @@ function MyGallery() {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const response = await axios.get(`${GALLERY_API_END_POINT}/allimages`, {
+                const response = await axios.get(`${GALLERY_API_END_POINT}/gallery/allimages`, {
                     withCredentials: true,
                 });
 
