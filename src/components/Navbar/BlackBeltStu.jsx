@@ -9,20 +9,19 @@ function BlackBeltStu() {
 
   useEffect(() => {
     const fetchBlackStu = async () => {
-      if (!user || !user._id) {
-        console.error("User ID is not available.");
-        return; // Exit early if user ID is not available
-      }
-  
       try {
-        const response = await axios.get(
-          `${BLACKSTU_API_END_POINT}/get/student/${user._id}`,
-          { withCredentials: true }
-        );
-        if (response.data.success) {
-          setBlackStudent(response.data.students || []); // Ensure it's an array
+        if (user && user._id) {
+          const response = await axios.get(
+            `${BLACKSTU_API_END_POINT}/get/student/${user._id}`,
+            { withCredentials: true }
+          );
+          if (response.data.success) {
+            setBlackStudent(response.data.students || []); // Ensure it's an array
+          } else {
+            console.error("No students found:", response.data.message);
+          }
         } else {
-          console.error("No students found:", response.data.message);
+          console.error("User ID is not available.");
         }
       } catch (error) {
         console.error("Error fetching BlackStudent:", error);
@@ -31,7 +30,6 @@ function BlackBeltStu() {
   
     fetchBlackStu();
   }, [user]);
-  
   
   
   return (
