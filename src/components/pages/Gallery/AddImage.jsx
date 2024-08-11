@@ -41,7 +41,7 @@ function AddImage({ openAddImage, setOpenAddImage, addNewImage }) {
 
     try {
       const response = await axios.post(
-        `${GALLERY_API_END_POINT}`,
+        `${GALLERY_API_END_POINT}/gallery`,
         data,
         {
           headers: {

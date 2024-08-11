@@ -31,16 +31,21 @@ function Header() {
       const res = await axios.get(`${USER_API_END_POINT}/logout`, {
         withCredentials: true,
       });
-      if (res.data.success) {
+      if (res && res.data && res.data.success) {
         dispatch(setUser(null));
         navigate("/");
         toast.success(res.data.message);
       }
     } catch (error) {
       console.log("logout error", error);
-      toast.error(error.response.data.message);
+      if (error.response && error.response.data) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Logout failed. Please try again.");
+      }
     }
   };
+  
 
   return (
     <header className="bg-gray-800 text-white">
