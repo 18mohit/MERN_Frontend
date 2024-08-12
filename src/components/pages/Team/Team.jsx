@@ -20,6 +20,10 @@ function Team() {
     fetchUsers();
   }, []);
 
+  const handleDelete = (deletedUserId) => {
+    setUsers(users.filter(user => user._id !== deletedUserId)); // Filter out the deleted user
+  };
+
   return (
     <>
     <div>
@@ -29,9 +33,9 @@ function Team() {
         ) : (
           <div className='flex justify-center bg-slate-200 p-5'>
             <div className="grid grid-cols-2 bg-slate-200 lg:grid-cols-5 gap-4">
-              {users.map((user, index) => (
+              {users.map((userr, index) => (
                 <div key={index}>
-                  <Sensei user={user} />
+                  <Sensei userr={userr} onDelete={handleDelete} />
                 </div>
               ))}
             </div>

@@ -4,7 +4,7 @@ import AddImage from './AddImage';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { LucideArrowLeft, LucideArrowRight, LucideDownload } from 'lucide-react';
+import { LucideArrowLeft, LucideArrowRight, LucideDownload, LucideShieldClose } from 'lucide-react';
 import { GALLERY_API_END_POINT } from '@/context/contex';
 
 function MyGallery() {
@@ -37,18 +37,18 @@ function MyGallery() {
 
     const imageAction = (action) => {
         let i = data.i;
-        if (action === 'next-img') {
+        if (action === 'previous-img') {
             if (i <= 0) {
                 setData({ img: images[images.length - 1].image, i: images.length - 1 });
             } else {
-                setData({ img: images[i - 1].image, i: i - 1 });
+                setData({ img: images[i - 1].image, i: i - 1 });// change to +
             }
         }
-        if (action === 'previous-img') {
+        if (action === 'next-img') {
             if (i >= images.length - 1) {
                 setData({ img: images[0].image, i: 0 });
             } else {
-                setData({ img: images[i + 1].image, i: i + 1 });
+                setData({ img: images[i + 1].image, i: i + 1 }); // change to -
             }
         }
         if (!action) {
@@ -71,6 +71,22 @@ function MyGallery() {
         } catch (error) {
             console.error("Error downloading image:", error);
             toast.error("Failed to download image.");
+        }
+    };
+    const deleteImage = async (imageId) => {
+        try {
+            const response = await axios.delete(`${GALLERY_API_END_POINT}/image/${imageId}`, {
+                withCredentials: true,
+            });
+            if (response.data?.success) {
+                setImages(images.filter((img) => img._id !== imageId));
+                toast.success("Image deleted successfully");
+            } else {
+                toast.error("Failed to delete image");
+            }
+        } catch (error) {
+            console.error("Error deleting image:", error.response?.data || error.message);
+            toast.error("Failed to delete image");
         }
     };
 
@@ -99,22 +115,30 @@ function MyGallery() {
                     images.length <= 0 ? (
                         <p className="font-serif">No images available</p>
                     ) : (
-                        images.reverse().map((image, i) => (
-                            <div key={i} className='relative'>
-                                <img
-                                    src={image.image}
-                                    className='w-full cursor-pointer'
-                                    onClick={() => viewImage(image.image, i)}
-                                />
-                                <button
-                                    onClick={() => downloadImage(image.image)}
-                                    className='absolute bottom-2 right-2 p-2 bg-gray-900 bg-opacity-50 text-white rounded'>
-                                    <LucideDownload
-                                    className=' w-[2vw] h-[2vw] lg:w-[1vw] lg:h-[1vw] '
+                            images.reverse().map((image, i) => (
+                                <div key={i} className='relative'>
+                                    <img
+                                        src={image.image}
+                                        className='w-full cursor-pointer'
+                                        onClick={() => viewImage(image.image, i)}
                                     />
-                                </button>
-                            </div>
-                        ))
+                                    <button
+                                        onClick={() => downloadImage(image.image)}
+                                        className='absolute bottom-[0.5vw] right-[0.5vw] p-[0.3vw] bg-gray-900 bg-opacity-50 text-white rounded'>
+                                        <LucideDownload
+                                            className=' w-[3.5vw] h-[3.5vw] lg:w-[1vw] lg:h-[1vw] '
+                                        />
+                                    </button>
+                                    {user && user.role === "Owner" && (
+                                        <button
+                                            onClick={() => deleteImage(image._id)}
+                                            className='absolute top-[0.5vw] left-[0.5vw] p-[0.3vw] bg-red-600 bg-opacity-50 text-white rounded'>
+                                            <LucideShieldClose
+                                            className=' w-[3.5vw] h-[3.5vw] lg:w-[1vw] lg:h-[1vw] '/>
+                                        </button>
+                                    )}
+                                </div>
+                            ))
                     )
                 }
                 </Masonry>
