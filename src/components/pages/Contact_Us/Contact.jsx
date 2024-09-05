@@ -19,7 +19,7 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/contactus/create', formData);
+      const response = await axios.post('CONTACTUS_API_END_POINT/create', formData);
 
       console.log('Form submitted successfully:', response.data);
       // Optionally, clear the form or display a success message
