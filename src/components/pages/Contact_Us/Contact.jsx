@@ -1,3 +1,4 @@
+import { CONTACTUS_API_END_POINT } from '@/context/contex';
 import axios from 'axios';
 import React, { useState } from 'react';
 
@@ -19,7 +20,7 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('CONTACTUS_API_END_POINT/create', formData);
+      const response = await axios.post(`${CONTACTUS_API_END_POINT}/create`, formData);
 
       console.log('Form submitted successfully:', response.data);
       // Optionally, clear the form or display a success message
