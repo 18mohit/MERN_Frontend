@@ -4,17 +4,19 @@ import AddImage from './AddImage';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { LucideArrowLeft, LucideArrowRight, LucideDownload, LucideShieldClose } from 'lucide-react';
+import {  LucideArrowLeft, LucideArrowRight, LucideDownload, LucideShieldClose } from 'lucide-react';
 import { GALLERY_API_END_POINT } from '@/context/contex';
 
 function MyGallery() {
     const [images, setImages] = useState([]);
     const [data, setData] = useState({ img: "", i: 0 });
     const [openAddImage, setOpenAddImage] = useState(false);
+    const [loading, setLoading] = useState(true); // New loading state
     const { user } = useSelector((store) => store.auth);
 
     useEffect(() => {
         const fetchImages = async () => {
+            setLoading(true); // Set loading to true before making the API call
             try {
                 const response = await axios.get(`${GALLERY_API_END_POINT}/gallery/allimages`, {
                     withCredentials: true,
@@ -26,6 +28,8 @@ function MyGallery() {
             } catch (error) {
                 console.error("Error fetching images:", error.response?.data || error.message);
                 toast.error("Failed to load images.");
+            } finally {
+                setLoading(false); // Set loading to false after the API call finishes
             }
         };
         fetchImages();
@@ -41,20 +45,21 @@ function MyGallery() {
             if (i <= 0) {
                 setData({ img: images[images.length - 1].image, i: images.length - 1 });
             } else {
-                setData({ img: images[i - 1].image, i: i - 1 });// change to +
+                setData({ img: images[i - 1].image, i: i - 1 });
             }
         }
         if (action === 'next-img') {
             if (i >= images.length - 1) {
                 setData({ img: images[0].image, i: 0 });
             } else {
-                setData({ img: images[i + 1].image, i: i + 1 }); // change to -
+                setData({ img: images[i + 1].image, i: i + 1 });
             }
         }
         if (!action) {
             setData({ img: "", i: 0 });
         }
     };
+
     const addNewImage = (newImage) => {
         setImages([newImage, ...images]);
     };
@@ -65,14 +70,15 @@ function MyGallery() {
             const blob = new Blob([response.data], { type: response.headers['content-type'] });
             const link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
-            link.download = 'image.jpg'; // Set the filename here
+            link.download = 'image.jpg';
             link.click();
-            window.URL.revokeObjectURL(link.href); // Clean up
+            window.URL.revokeObjectURL(link.href);
         } catch (error) {
             console.error("Error downloading image:", error);
             toast.error("Failed to download image.");
         }
     };
+
     const deleteImage = async (imageId) => {
         try {
             const response = await axios.delete(`${GALLERY_API_END_POINT}/image/${imageId}`, {
@@ -110,11 +116,23 @@ function MyGallery() {
             }
 
             <div className={`p-2 ${data.img ? 'filter blur-md' : ''}`}>
-                <Masonry columnsCount={4} gutter="10px">
-                {
-                    images.length <= 0 ? (
-                        <p className="font-serif">No images available</p>
-                    ) : (
+                {loading ? (
+                    <div className="flex  items-center flex-col h-screen">
+                    <div className="loader">
+                      <img
+                        src="https://media.tenor.com/fdALT4i5ERYAAAAC/kung-fu-fighting.gif"
+                        alt="kung fu gif"
+                        className="w-[30vw] h-[40vw] sm:w-[20vw] sm:h-[30vw]"
+                      />
+                    </div>
+                    <p className="font-serif text-[5vw]  sm:text-[2vw]">Please wait...</p>
+                  </div>
+                  
+                ) : (
+                    <Masonry columnsCount={4} gutter="10px">
+                        {images.length <= 0 ? (
+                            <p className="font-serif">No images available</p>
+                        ) : (
                             images.reverse().map((image, i) => (
                                 <div key={i} className='relative'>
                                     <img
@@ -139,9 +157,9 @@ function MyGallery() {
                                     )}
                                 </div>
                             ))
-                    )
-                }
-                </Masonry>
+                        )}
+                    </Masonry>
+                )}
             </div>
 
             {user && user.role === "Owner" && (
