@@ -66,7 +66,7 @@ function MyGallery() {
             link.href = window.URL.createObjectURL(blob);
             link.download = 'image.jpg';
             link.click();
-            window.URL.revokeObjectURL(link.href);
+            window.URL.revokeObjxectURL(link.href);
         } catch (error) {
             console.error("Error downloading image:", error);
             toast.error("Failed to download image.");
