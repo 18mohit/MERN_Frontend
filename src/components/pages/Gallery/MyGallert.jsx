@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Masonry from "react-responsive-masonry";
 import AddImage from './AddImage';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { LucideArrowLeft, LucideArrowRight, LucideDownload, LucideShieldClose } from 'lucide-react';
+import { LucideDownload, LucideShieldClose } from 'lucide-react';
 import { GALLERY_API_END_POINT } from '@/context/contex';
 
 function MyGallery() {
@@ -13,6 +13,7 @@ function MyGallery() {
     const [openAddImage, setOpenAddImage] = useState(false);
     const [loading, setLoading] = useState(true);
     const { user } = useSelector((store) => store.auth);
+    const modalRef = useRef(null);
 
     useEffect(() => {
         const fetchImages = async () => {
@@ -35,28 +36,19 @@ function MyGallery() {
         fetchImages();
     }, []);
 
-    const viewImage = (img, i) => {
-        setData({ img, i });
-    };
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                imageAction(); // Close the image modal
+            }
+        };
 
-    const imageAction = (action) => {
-        let newIndex = data.i;
+        document.addEventListener('mousedown', handleClickOutside);
 
-        if (action === 'previous-img') {
-            newIndex = (newIndex <= 0) ? images.length - 1 : newIndex - 1;
-        } else if (action === 'next-img') {
-            newIndex = (newIndex >= images.length - 1) ? 0 : newIndex + 1;
-        } else if (!action) {
-            setData({ img: "", i: 0 });
-            return;
-        }
-
-        setData({ img: images[newIndex].image, i: newIndex });
-    };
-
-    const addNewImage = (newImage) => {
-        setImages([newImage, ...images]);
-    };
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const downloadImage = async (url) => {
         try {
@@ -66,7 +58,7 @@ function MyGallery() {
             link.href = window.URL.createObjectURL(blob);
             link.download = 'image.jpg';
             link.click();
-            window.URL.revokeObjxectURL(link.href);
+            window.URL.revokeObjectURL(link.href);
         } catch (error) {
             console.error("Error downloading image:", error);
             toast.error("Failed to download image.");
@@ -90,22 +82,27 @@ function MyGallery() {
         }
     };
 
+    const viewImage = (img, i) => {
+        setData({ img, i });
+    };
+
+    const imageAction = () => {
+        setData({ img: "", i: 0 });
+    };
+
     return (
         <>
             {data.img && 
-                <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-80 z-50'>
+                <div
+                    ref={modalRef}
+                    className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-80 z-50'
+                >
                     <button
-                        onClick={() => imageAction()}
+                        onClick={imageAction}
                         className='absolute top-5 right-5 p-2 h-10 w-10 border border-white text-white'>X</button>
-                    <button
-                        onClick={() => imageAction("previous-img")}
-                        className='absolute left-5 top-1/2 transform -translate-y-1/2 p-2 border border-white'> <LucideArrowLeft/> </button>
                     <img
                         className='max-w-[90%] max-h-[90%]'
                         src={data.img} alt="" />
-                    <button
-                        onClick={() => imageAction("next-img")}
-                        className='absolute right-5 top-1/2 transform -translate-y-1/2 p-2 border border-white'> <LucideArrowRight/> </button>
                 </div>
             }
 
@@ -167,7 +164,7 @@ function MyGallery() {
             )}
 
             <div>
-                <AddImage openAddImage={openAddImage} setOpenAddImage={setOpenAddImage} addNewImage={addNewImage} />
+                <AddImage openAddImage={openAddImage} setOpenAddImage={setOpenAddImage} />
             </div>
         </>
     );
