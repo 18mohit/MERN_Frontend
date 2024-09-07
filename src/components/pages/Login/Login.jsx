@@ -53,6 +53,14 @@ const Login = () => {
           ? error.response.data.message
           : "An error occurred. Please try again.";
       toast.error(errorMessage);
+  
+      // Clear the form fields on error
+      setFormData({
+        email: "",
+        password: "",
+        role: "",
+      });
+      setLoading(false); // Stop loading indicator
     }
   };
 

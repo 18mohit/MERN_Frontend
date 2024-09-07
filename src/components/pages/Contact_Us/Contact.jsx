@@ -1,8 +1,12 @@
 import { CONTACTUS_API_END_POINT } from '@/context/contex';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { redirect, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 function Contact() {
+  const [loading, setLoading] = useState(false); // Added loading state
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,8 +25,7 @@ function Contact() {
     e.preventDefault();
     try {
       const response = await axios.post(`${CONTACTUS_API_END_POINT}/create`, formData);
-
-      console.log('Form submitted successfully:', response.data);
+      toast.success("we'll Contact You Soon");
       // Optionally, clear the form or display a success message
       setFormData({
         name: '',
@@ -30,8 +33,18 @@ function Contact() {
         number: '',
         message: '',
       });
+      navigate('/');
     } catch (error) {
       console.error('Error during form submission:', error.response ? error.response.data : error.message);
+      toast.error(errorMessage);
+      setFormData({
+        name: '',
+        email: '',
+        number: '',
+        message: '',
+      });
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
   return (
@@ -90,11 +103,14 @@ function Contact() {
         </div>
 
         <div className='m-[1vw] flex justify-center'>
-          <button
+        <button
             type='submit'
-            className='bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600'
+            className={`bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 ${
+              loading ? 'opacity-50' : ''
+            }`} // Disable button while loading
+            disabled={loading} // Disable button when loading
           >
-            Submit
+            {loading ? 'Submitting...' : 'Submit'} {/* Display different text when loading */}
           </button>
         </div>
       </form>

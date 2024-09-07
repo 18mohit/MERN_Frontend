@@ -65,6 +65,14 @@ const SignUp = () => {
     } catch (error) {
       console.error(error);
       toast.error(error.response?.data?.message || "Something went wrong");
+      // Clear the form fields on error
+      setFormData({
+        fullname: "",
+        email: "",
+        password: "",
+        role: "",
+      });
+      setLoading(false); // Stop loading indicator
     }
   };
 
