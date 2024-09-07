@@ -4,19 +4,19 @@ import AddImage from './AddImage';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'sonner';
-import {  LucideArrowLeft, LucideArrowRight, LucideDownload, LucideShieldClose } from 'lucide-react';
+import { LucideArrowLeft, LucideArrowRight, LucideDownload, LucideShieldClose } from 'lucide-react';
 import { GALLERY_API_END_POINT } from '@/context/contex';
 
 function MyGallery() {
     const [images, setImages] = useState([]);
     const [data, setData] = useState({ img: "", i: 0 });
     const [openAddImage, setOpenAddImage] = useState(false);
-    const [loading, setLoading] = useState(true); // New loading state
+    const [loading, setLoading] = useState(true);
     const { user } = useSelector((store) => store.auth);
 
     useEffect(() => {
         const fetchImages = async () => {
-            setLoading(true); // Set loading to true before making the API call
+            setLoading(true);
             try {
                 const response = await axios.get(`${GALLERY_API_END_POINT}/gallery/allimages`, {
                     withCredentials: true,
@@ -29,7 +29,7 @@ function MyGallery() {
                 console.error("Error fetching images:", error.response?.data || error.message);
                 toast.error("Failed to load images.");
             } finally {
-                setLoading(false); // Set loading to false after the API call finishes
+                setLoading(false);
             }
         };
         fetchImages();
@@ -40,24 +40,18 @@ function MyGallery() {
     };
 
     const imageAction = (action) => {
-        let i = data.i;
+        let newIndex = data.i;
+
         if (action === 'previous-img') {
-            if (i <= 0) {
-                setData({ img: images[images.length - 1].image, i: images.length - 1 });
-            } else {
-                setData({ img: images[i - 1].image, i: i - 1 });
-            }
-        }
-        if (action === 'next-img') {
-            if (i >= images.length - 1) {
-                setData({ img: images[0].image, i: 0 });
-            } else {
-                setData({ img: images[i + 1].image, i: i + 1 });
-            }
-        }
-        if (!action) {
+            newIndex = (newIndex <= 0) ? images.length - 1 : newIndex - 1;
+        } else if (action === 'next-img') {
+            newIndex = (newIndex >= images.length - 1) ? 0 : newIndex + 1;
+        } else if (!action) {
             setData({ img: "", i: 0 });
+            return;
         }
+
+        setData({ img: images[newIndex].image, i: newIndex });
     };
 
     const addNewImage = (newImage) => {
@@ -105,29 +99,28 @@ function MyGallery() {
                         className='absolute top-5 right-5 p-2 h-10 w-10 border border-white text-white'>X</button>
                     <button
                         onClick={() => imageAction("previous-img")}
-                        className='absolute left-5 top-1/2 transform -translate-y-1/2 p-2 border border-white '> <LucideArrowLeft/> </button>
+                        className='absolute left-5 top-1/2 transform -translate-y-1/2 p-2 border border-white'> <LucideArrowLeft/> </button>
                     <img
                         className='max-w-[90%] max-h-[90%]'
                         src={data.img} alt="" />
                     <button
                         onClick={() => imageAction("next-img")}
-                        className='absolute right-5 top-1/2 transform -translate-y-1/2 p-2 border border-white '> <LucideArrowRight/> </button>
+                        className='absolute right-5 top-1/2 transform -translate-y-1/2 p-2 border border-white'> <LucideArrowRight/> </button>
                 </div>
             }
 
             <div className={`p-2 ${data.img ? 'filter blur-md' : ''}`}>
                 {loading ? (
-                    <div className="flex  items-center flex-col h-screen">
-                    <div className="loader">
-                      <img
-                        src="https://media.tenor.com/fdALT4i5ERYAAAAC/kung-fu-fighting.gif"
-                        alt="kung fu gif"
-                        className="w-[30vw] h-[40vw] sm:w-[20vw] sm:h-[30vw]"
-                      />
+                    <div className="flex items-center flex-col h-screen">
+                        <div className="loader">
+                            <img
+                                src="https://media.tenor.com/fdALT4i5ERYAAAAC/kung-fu-fighting.gif"
+                                alt="kung fu gif"
+                                className="w-[30vw] h-[40vw] sm:w-[20vw] sm:h-[30vw]"
+                            />
+                        </div>
+                        <p className="font-serif text-[5vw] sm:text-[2vw]">Please wait...</p>
                     </div>
-                    <p className="font-serif text-[5vw]  sm:text-[2vw]">Please wait...</p>
-                  </div>
-                  
                 ) : (
                     <Masonry columnsCount={4} gutter="10px">
                         {images.length <= 0 ? (
