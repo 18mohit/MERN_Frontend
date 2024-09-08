@@ -23,7 +23,7 @@ function First() {
               Mind,Body, and Soul with&nbsp;
             </span>
             <span className="nska font-bold sm:text-[4vw] text-[7vw] text-wrap">
-              NSKA <br />
+              ABX. <br />
             </span>
           </h1>
         </div>

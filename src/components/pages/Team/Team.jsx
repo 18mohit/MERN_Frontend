@@ -16,7 +16,7 @@ function Team() {
       } catch (error) {
         console.error("Error fetching users:", error);
       } finally {
-        setLoading(false); // Set loading to false when the fetch is complete
+        setLoading(false); 
       }
     };
 
@@ -24,7 +24,7 @@ function Team() {
   }, []);
 
   const handleDelete = (deletedUserId) => {
-    setUsers(users.filter(user => user._id !== deletedUserId)); // Filter out the deleted user
+    setUsers(users.filter(user => user._id !== deletedUserId));
   };
 
   return (
@@ -41,7 +41,6 @@ function Team() {
                     </div>
                     <p className="font-serif text-[5vw]  sm:text-[2vw]">Please wait...</p>
                   </div>
-                  
                 ) : (
           <div>
             {

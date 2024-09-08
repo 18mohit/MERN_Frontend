@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.jpeg";
+import logo from "../../assets/logo2.jpeg";
 import punch from "../../assets/punch.jpeg";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -70,10 +70,10 @@ function Header() {
         </div>
         <div className="text-center w-full">
           <h1 className="lg:text-[2vw] text-[5vw] font-bold">
-            NIHON SHOTOKAN KARATE ASSOCIATION - INDIA
+            ABX ASSOCIATION - INDIA
           </h1>
           <h2 className="lg:text-[1vw] text-[2.5vw] font-mono">
-            Affiliated With: NIHON SHOTOKAN KARATE DO SHUUGOUKAI - JAPAN
+            Affiliated With:  SHUUGOUKAI 
           </h2>
         </div>
       </div>
