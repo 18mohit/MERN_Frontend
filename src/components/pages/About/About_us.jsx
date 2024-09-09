@@ -1,8 +1,13 @@
 import React from 'react'
+import History from "./History";
+import Nowadays from "./Nowadays";
 
 function About_us() {
   return (
-    <div>About_us</div>
+    <>
+    <History/>
+    <Nowadays/>
+    </>
   )
 }
 
