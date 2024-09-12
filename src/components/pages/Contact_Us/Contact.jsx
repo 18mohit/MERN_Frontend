@@ -48,10 +48,9 @@ function Contact() {
     }
   };
   return (
-    <div className='flex justify-center bg-slate-300 min-h-screen items-center'>
-      <form className='bg-slate-100 w-[40vw] rounded-2xl m-[2vw] p-6 shadow-lg' onSubmit={handleSubmit}>
+    <div className='flex justify-center bg-slate-300  items-center'>
+      <form className='bg-slate-100 w-[80vw] sm:w-[40vw] m-[7vw] sm:m-[2vw]  rounded-2xl p-6 shadow-lg' onSubmit={handleSubmit}>
         <h1 className='flex justify-center text-2xl font-bold mb-4'>Contact Us</h1>
-        
         <div className='m-[1vw]'>
           <label htmlFor="name" className='block mb-2 font-semibold'>Name:</label>
           <input
