@@ -29,19 +29,19 @@ function Sensei({ userr, onDelete }) {
     }
 };
   return (
-     <div className=' w-[40vw] h-[70vw] lg:h-[23vw] lg:w-[18vw] shadow-xl hover:shadow-slate-500 border border-gray-200 pt-[0vw] pl-[1vw] pr-[1vw] pb-[2vw] rounded '>
+     <div className=' w-[40vw] h-[70vw] sm:h-[23vw] sm:w-[18vw] shadow-xl hover:shadow-slate-500 border border-gray-200 pt-[0vw] pl-[1vw] pr-[1vw] pb-[2vw] rounded '>
           {user && user.role == "Owner" && (
           <button
            onClick={deleteSensei}
             className=' absolute flex p-[0.3vw] bg-red-600 bg-opacity-50 text-white rounded'
             ><LucideShieldClose
-            className=' w-[3.5vw] h-[3.5vw] lg:w-[1vw] lg:h-[1vw] '/></button>
+            className=' w-[3.5vw] h-[3.5vw] sm:w-[1vw] sm:h-[1vw] '/></button>
            )}
-          <img className='pt-2 h-[43vw] lg:h-[15vw] w-full align-middle ' src={userr?.photo} alt="" />
+          <img className='pt-2 h-[43vw] sm:h-[15vw] w-full align-middle ' src={userr?.photo} alt="" />
               <div className='grid '>
-                    <h1 className='text-[5vw] lg:text-[1.3vw] font-serif text-black ' >{ userr?.fullname }</h1>
-                    <span className='text-slate-500 text-[3vw] lg:text-[1vw] font-semibold' >{userr.role}</span>  
-                    <Button className='shadow-md hover:shadow-slate-500 text-[3vw] lg:text-[1.2vw] ' onPress={onOpen}>More info</Button>
+                    <h1 className='text-[5vw] sm:text-[1.3vw] font-serif text-black ' >{ userr?.fullname }</h1>
+                    <span className='text-slate-500 text-[3vw] sm:text-[1vw] font-semibold' >{userr.role}</span>  
+                    <Button className='shadow-md hover:shadow-slate-500 text-[3vw] sm:text-[1.2vw] ' onPress={onOpen}>More info</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => ( 

@@ -134,7 +134,7 @@ function MyGallery() {
                                         onClick={() => downloadImage(image.image)}
                                         className='absolute bottom-[0.5vw] right-[0.5vw] p-[0.3vw] bg-gray-900 bg-opacity-50 text-white rounded'>
                                         <LucideDownload
-                                            className=' w-[3.5vw] h-[3.5vw] lg:w-[1vw] lg:h-[1vw] '
+                                            className=' w-[3.5vw] h-[3.5vw] sm:w-[1vw] sm:h-[1vw] '
                                         />
                                     </button>
                                     {user && user.role === "Owner" && (
@@ -142,7 +142,7 @@ function MyGallery() {
                                             onClick={() => deleteImage(image._id)}
                                             className='absolute top-[0.5vw] left-[0.5vw] p-[0.3vw] bg-red-600 bg-opacity-50 text-white rounded'>
                                             <LucideShieldClose
-                                            className=' w-[3.5vw] h-[3.5vw] lg:w-[1vw] lg:h-[1vw] '/>
+                                            className=' w-[3.5vw] h-[3.5vw] sm:w-[1vw] sm:h-[1vw] '/>
                                         </button>
                                     )}
                                 </div>

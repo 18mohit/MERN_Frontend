@@ -48,7 +48,7 @@ function Team() {
                 <span>Member is not available</span>
               ) : (
                 <div className='flex justify-center bg-slate-200 p-5'>
-                  <div className="grid grid-cols-2 bg-slate-200 lg:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-2 bg-slate-200 sm:grid-cols-5 gap-4">
                     {users.map((userr, index) => (
                       <div key={index}>
                         <Sensei userr={userr} onDelete={handleDelete} />
