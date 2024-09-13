@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Navbar/Header";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
@@ -13,8 +13,22 @@ import SignUpSensei from "./components/pages/Login/SignUpSensei";
 import Profile from "./components/Navbar/Profile";
 import MyGallert from "./components/pages/Gallery/MyGallert";
 import Contact from "./components/pages/Contact_Us/Contact";
+import PreLoader from "./components/hooks/PreLoader";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (for example, 2 seconds)
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  if (loading) {
+    return <PreLoader />;
+  }
+
   return (
     <>
       <Router>
