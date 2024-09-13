@@ -41,7 +41,7 @@ function Sensei({ userr, onDelete }) {
               <div className='grid '>
                     <h1 className='text-[5vw] sm:text-[1.3vw] font-serif text-black ' >{ userr?.fullname }</h1>
                     <span className='text-slate-500 text-[3vw] sm:text-[1vw] font-semibold' >{userr.role}</span>  
-                    <Button className='shadow-md hover:shadow-slate-500 text-[3vw] sm:text-[1.2vw] ' onPress={onOpen}>More info</Button>
+                    <Button className='shadow-md hover:shadow-slate-500 text-[3vw] sm:text-[1.2vw]' onPress={onOpen}>More info</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => ( 
@@ -49,11 +49,10 @@ function Sensei({ userr, onDelete }) {
               <ModalHeader className="flex flex-col gap-1">{userr.fullname}</ModalHeader>
               <ModalBody>
                 <p>
-                {user?.profile?.bio || user?.profile?.fullname }
-                  {user?.profile?.email }
+                {userr?.profile?.bio || userr?.profile?.fullname }
+                  {userr?.profile?.email }
                 </p>
-                <p>
-                </p>
+                
                 <p>{userr?.certificate ? (
                         <a
                           className="text-blue-900"
