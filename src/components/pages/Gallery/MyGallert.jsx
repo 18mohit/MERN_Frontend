@@ -90,6 +90,11 @@ function MyGallery() {
         setData({ img: "", i: 0 });
     };
 
+    // Add this function to update images when a new image is uploaded
+    const addNewImage = (newImage) => {
+        setImages([...images, newImage]); // Add the new image to the state
+    };
+
     return (
         <>
             {data.img && 
@@ -164,7 +169,7 @@ function MyGallery() {
             )}
 
             <div>
-                <AddImage openAddImage={openAddImage} setOpenAddImage={setOpenAddImage} />
+                <AddImage openAddImage={openAddImage} setOpenAddImage={setOpenAddImage} addNewImage={addNewImage} />
             </div>
         </>
     );

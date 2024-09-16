@@ -56,6 +56,7 @@ function AddImage({ openAddImage, setOpenAddImage, addNewImage }) {
         setOpenAddImage(false);
       }
     } catch (error) {
+      console.log(error);
       console.log("Error details:", error.response?.data || error.message);
       toast.error("Failed to upload image.");
     } finally {
