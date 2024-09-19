@@ -66,13 +66,16 @@ function Profile() {
                         <span>No certificate available</span>
                       )}
                       <div>
-                        <button
-                          onClick={() => setAddStuOpen(true)}
-                          className="mt-[6vw] font-bold  bg-yellow-400 p-2"
-                        >
-                          Add Student
-                        </button>
-                      </div>
+  {(user.role === 'Owner' || user.role === 'Sensei') && (
+    <button
+      onClick={() => setAddStuOpen(true)}
+      className="mt-[6vw] font-bold bg-yellow-400 p-2"
+    >
+      Add Student
+    </button>
+  )}
+</div>
+
                     </div>
                   </div>
                 </div>
@@ -84,10 +87,15 @@ function Profile() {
           </div>
         </div>
         <div className="bg-slate-900">
-          <BlackBeltStu />
-          <UpdateProfile open={open} setOpen={setOpen} />
-          <AddBlackStu addStuopen={addStuopen} setAddStuOpen={setAddStuOpen} />
-        </div>
+  {(user.role === 'Owner' || user.role === 'Sensei') && <BlackBeltStu />}
+  {(user.role === 'Owner' || user.role === 'Sensei') && (
+    <UpdateProfile open={open} setOpen={setOpen} />
+  )}
+  {(user.role === 'Owner' || user.role === 'Sensei') && (
+    <AddBlackStu addStuopen={addStuopen} setAddStuOpen={setAddStuOpen} />
+  )}
+</div>
+
       </div>
     </>
   );
