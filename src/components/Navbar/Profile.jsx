@@ -26,7 +26,9 @@ function Profile() {
               <div>
                 <div className="block sm:flex sm:justify-between">
                   <div>
-                    <h1 className="text-white font-medium text-xl">{user?.fullname}</h1>
+                    <h1 className="text-white font-medium text-xl">
+                      {user?.fullname}
+                    </h1>
                     <span className="text-gray-600">
                       {user?.role || "No bio available"}
                     </span>
@@ -46,8 +48,12 @@ function Profile() {
                   </p>
                   <div className="flex gap-[10vw] w-full sm:max-w-[32vw]">
                     <div>
-                      <h1 className=" text-white font-semibold mt-[1vw]">Contact Number</h1>
-                      <h1 className="text-slate-500" >{user?.profile?.contactNumber || "1234567890"}</h1>
+                      <h1 className=" text-white font-semibold mt-[1vw]">
+                        Contact Number
+                      </h1>
+                      <h1 className="text-slate-500">
+                        {user?.profile?.contactNumber || "1234567890"}
+                      </h1>
                     </div>
                     <div>
                       <h1 className="font-medium text-white mt-[1vw] text-xl">
@@ -66,36 +72,42 @@ function Profile() {
                         <span>No certificate available</span>
                       )}
                       <div>
-  {(user.role === 'Owner' || user.role === 'Sensei') && (
-    <button
-      onClick={() => setAddStuOpen(true)}
-      className="mt-[6vw] font-bold bg-yellow-400 p-2"
-    >
-      Add Student
-    </button>
-  )}
-</div>
-
+                        {(user.role === "Owner" || user.role === "Sensei") && (
+                          <button
+                            onClick={() => setAddStuOpen(true)}
+                            className="mt-[6vw] font-bold bg-yellow-400 p-2"
+                          >
+                            Add Student
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <button onClick={() => setOpen(true)} className="sm:-mt-[30vw] text-white ">
+            <button
+              onClick={() => setOpen(true)}
+              className="sm:-mt-[30vw] text-white "
+            >
               <Pen />
             </button>
           </div>
         </div>
         <div className="bg-slate-900">
-  {(user.role === 'Owner' || user.role === 'Sensei') && <BlackBeltStu />}
-  {(user.role === 'Owner' || user.role === 'Sensei') && (
-    <UpdateProfile open={open} setOpen={setOpen} />
-  )}
-  {(user.role === 'Owner' || user.role === 'Sensei') && (
-    <AddBlackStu addStuopen={addStuopen} setAddStuOpen={setAddStuOpen} />
-  )}
-</div>
-
+          {(user.role === "Owner" || user.role === "Sensei") && (
+            <BlackBeltStu />
+          )}
+          {(user.role === "Owner" || user.role === "Sensei") && (
+            <UpdateProfile open={open} setOpen={setOpen} />
+          )}
+          {(user.role === "Owner" || user.role === "Sensei") && (
+            <AddBlackStu
+              addStuopen={addStuopen}
+              setAddStuOpen={setAddStuOpen}
+            />
+          )}
+        </div>
       </div>
     </>
   );

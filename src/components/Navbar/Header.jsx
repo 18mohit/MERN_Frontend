@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo2.jpeg";
+import logo from "../../assets/master.jpg";
 import punch from "../../assets/punch.jpeg";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -45,7 +45,6 @@ function Header() {
       }
     }
   };
-  
 
   return (
     <header className="bg-gray-800 text-white">
@@ -69,12 +68,17 @@ function Header() {
           </NavLink>
         </div>
         <div className="text-center w-full">
-          <h1 className="sm:text-[2vw] text-[5vw] font-bold">
-            ABX ASSOCIATION - INDIA
+          <h1 className="sm:text-[2vw] text-slate-950 font-serif nska text-[5vw] font-bold">
+            Master Mahendra Patel
           </h1>
-          <h2 className="sm:text-[1vw] text-[2.5vw] font-mono">
-            Affiliated With:  SHUUGOUKAI 
-          </h2>
+          <div className="flex justify-center gap-2 nska" >
+            <h2 className="sm:text-[1vw] text-[2.5vw] font-mono">
+            5<sup>th</sup> Dan Black Belt
+            </h2>
+            <h2 className="sm:text-[1vw] text-[2.5vw] font-mono">
+              (NSKA)
+            </h2>
+          </div>
         </div>
       </div>
 
@@ -87,66 +91,66 @@ function Header() {
               onClick={toggleNavVisibility}
               className="cursor-pointer h-[11vw] w-[11vw] rounded-full"
             />
-              <div className=" text-wrap items-center">
-                {!user? (
-                  <div className="items-center sm:-mt-2 mt-0">
-                    <NavLink to="/login">
-                      <Button className="w-[15vw] text-wrap sm:w-[6vw] bg-slate-50 text-black hover:bg-slate-200">
-                        Login
-                      </Button>
-                    </NavLink>
-                    <NavLink to="/signup">
-                      <Button className="w-[15vw] text-wrap sm:w-[6vw]">
-                        SignUp
-                      </Button>
-                    </NavLink>
-                  </div>
-                ) : (
-                  <Popover>
-                    <PopoverTrigger asChild>
+            <div className=" text-wrap items-center">
+              {!user ? (
+                <div className="items-center sm:-mt-2 mt-0">
+                  <NavLink to="/login">
+                    <Button className="w-[15vw] text-wrap sm:w-[6vw] bg-slate-50 text-black hover:bg-slate-200">
+                      Login
+                    </Button>
+                  </NavLink>
+                  <NavLink to="/signup">
+                    <Button className="w-[15vw] text-wrap sm:w-[6vw]">
+                      SignUp
+                    </Button>
+                  </NavLink>
+                </div>
+              ) : (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Avatar className="cursor-pointer">
+                      <AvatarImage src={user.photo} />
+                    </Avatar>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80">
+                    <div className="flex gap-10 ">
                       <Avatar className="cursor-pointer">
                         <AvatarImage src={user.photo} />
                       </Avatar>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-80">
-                      <div className="flex gap-10 ">
-                        <Avatar className="cursor-pointer">
-                          <AvatarImage src={user.photo} />
-                        </Avatar>
-                        <div>
-                          <h1 className="font-medium">{user.fullname}</h1>
-                          <h1 className="font-medium text-gray-500">
-                            {user.role}
-                          </h1>
-                        </div>
+                      <div>
+                        <h1 className="font-medium">{user.fullname}</h1>
+                        <h1 className="font-medium text-gray-500">
+                          {user.role}
+                        </h1>
                       </div>
-                      <div className="flex flex-col ">
-                        <div className="flex items-center">
-                          <User2 />
-                          <NavLink to="/profile">
-                            <Button
-                              variant="link"
-                              className="font-medium text-gray-500"
-                            >
-                              View Profile
-                            </Button>
-                          </NavLink>
-                        </div>
-                        <div className="flex items-center">
-                          <LogOut />
+                    </div>
+                    <div className="flex flex-col ">
+                      <div className="flex items-center">
+                        <User2 />
+                        <NavLink to="/profile">
                           <Button
-                            onClick={logoutHandler}
                             variant="link"
                             className="font-medium text-gray-500"
                           >
-                            Logout
+                            View Profile
                           </Button>
-                        </div>
+                        </NavLink>
                       </div>
-                    </PopoverContent>
-                  </Popover>
-                )}
-              </div>
+                      <div className="flex items-center">
+                        <LogOut />
+                        <Button
+                          onClick={logoutHandler}
+                          variant="link"
+                          className="font-medium text-gray-500"
+                        >
+                          Logout
+                        </Button>
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
+            </div>
           </div>
           {isNavVisible && (
             <ul className="flex flex-col sm:flex-row sm:flex-wrap text-[5vw] sm:text-[1.4vw] ml-[1vw] sm:space-x-8">

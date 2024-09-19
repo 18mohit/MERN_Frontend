@@ -61,7 +61,7 @@ export const ContactUs = () => {
           />
         </div>
         <div className="m-[1vw]">
-          <label htmlFor="number" className="block mb-2 font-semibold">Number:</label>
+          <label htmlFor="number" className="block mb-2 font-semibold">Number: (Optional)</label>
           <input
             type="number"
             name="number"

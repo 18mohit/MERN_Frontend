@@ -59,11 +59,11 @@ function Third() {
             data-aos="fade-down"
           >
             <h1 className="lg:pt-8 pt-5 text-white lg:text-[2.4vw] text-[6vw]">
-              {count && <CountUp start={0} end={20} duration={4.75}></CountUp>}
+              {count && <CountUp start={0} end={300} duration={4.75}></CountUp>}
               +
             </h1>
             <p className="text-slate-300 lg:text-[1.2vw] text-[3vw]">
-              Number of Branches
+             Trained students
             </p>
           </div>
           <div
@@ -71,7 +71,7 @@ function Third() {
             data-aos="fade-down"
           >
             <h1 className="lg:pt-8 pt-5 text-white lg:text-[2.4vw] text-[6vw]">
-              {count && <CountUp start={0} end={100} duration={6.75}></CountUp>}
+              {count && <CountUp start={0} end={50} duration={6.75}></CountUp>}
               +
             </h1>
             <p className="text-slate-300 lg:text-[1.2vw] text-[3vw]">

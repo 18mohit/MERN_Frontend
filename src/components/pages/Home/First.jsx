@@ -16,14 +16,14 @@ function First() {
         data-aos="fade-down"
         className="right ">
         <div>
-          <h1 className="max-w-[40vw] text-left bg-slte-400 ml-[1.5vw] center pt-[1vw]">
+          <h1 className="max-w-[40vw] text-left ml-[1.5vw] center pt-[1vw]">
             <span className="tagline sm:text-[3.5vw] text-[6vw] font-bold font-serif align-middle">
               {/* <br /> */}
               Pursue Mastery in <br />
               Mind,Body, and Soul with&nbsp;
             </span>
             <span className="nska font-bold sm:text-[4vw] text-[7vw] text-wrap">
-              ABX. <br />
+              Karate <br />
             </span>
           </h1>
         </div>
@@ -33,6 +33,7 @@ function First() {
               <RiArrowRightSFill />
             </span>
             <span> Learn With Top Sensei. </span>
+            {/* <span> 30 years of karate experience. </span> */}
             {/* Train like a beast, fight like a warrior. */}
           </div>
           <div className="flex mt-4 font-serif">
@@ -40,6 +41,7 @@ function First() {
               <RiArrowRightSFill />
             </span>
             <span> Learn any type of Martial Art.</span>
+            {/* <span> Learn any type of Martial Art.</span> */}
           </div>
           <div className="flex mt-4 font-serif ">
             <span className="mt-1 mr-1">
