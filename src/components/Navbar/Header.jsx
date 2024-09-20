@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../assets/master.jpg";
+import logo from "../../assets/logo2.jpeg";
 import punch from "../../assets/punch.jpeg";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -69,14 +69,14 @@ function Header() {
         </div>
         <div className="text-center w-full">
           <h1 className="sm:text-[2vw] text-slate-950 font-serif nska text-[5vw] font-bold">
-            Master Mahendra Patel
+            ABX School of Martial arts
           </h1>
           <div className="flex justify-center gap-2 nska" >
             <h2 className="sm:text-[1vw] text-[2.5vw] font-mono">
-            5<sup>th</sup> Dan Black Belt
+            {/* 5<sup>th</sup> Dan Black Belt */}
             </h2>
             <h2 className="sm:text-[1vw] text-[2.5vw] font-mono">
-              (NSKA)
+              {/* (NSKA) */}
             </h2>
           </div>
         </div>
