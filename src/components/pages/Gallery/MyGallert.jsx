@@ -100,7 +100,7 @@ function MyGallery() {
             {data.img && 
                 <div
                     ref={modalRef}
-                    className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-80 z-50'
+                    className='fixed  top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-80 z-50'
                 >
                     <button
                         onClick={imageAction}

@@ -11,23 +11,23 @@ function First() {
       }, []);
   return (
     <>
-      <div className="bg-gray-700 flex justify-between">
+      <div className="bg-[#1f4c66] flex justify-between">
         <div 
         data-aos="fade-down"
         className="right ">
         <div>
-          <h1 className="max-w-[40vw] text-left ml-[1.5vw] center pt-[1vw]">
-            <span className="tagline sm:text-[3.5vw] text-[6vw] font-bold font-serif align-middle">
+          <h1 className="max-w-[full] sm:max-w-[40vw] text-left ml-[1.5vw] center pt-[1vw]">
+            <span className="tagline sm:text-[3.5vw] text-[7vw] font-bold font-serif align-middle">
               {/* <br /> */}
               Pursue Mastery in <br />
               Mind,Body, and Soul with&nbsp;
             </span>
             <span className="nska font-bold sm:text-[4vw] text-[7vw] text-wrap">
-              ABX. <br />
+              Koutsuku. <br />
             </span>
           </h1>
         </div>
-        <div className="text-[3.5vw]  sm:text-[1.5vw]">
+        <div className="text-[4.5vw]  sm:text-[1.5vw]">
           <div className="flex mt-4 font-serif">
             <span className="mt-1 mr-1">
               <RiArrowRightSFill />
@@ -60,7 +60,7 @@ function First() {
 
         <div className="left mr-[5vw]">
             <img 
-            className=" h-[50vw] sm:h-[33.5vw]" 
+            className=" h-[50vw] sm:h-[33.5vw] hidden sm:block" 
             data-aos="fade-down"
             data-aos-delay="500"
             src={bg1} alt="sensei" />

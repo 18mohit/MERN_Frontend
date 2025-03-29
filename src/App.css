@@ -15,7 +15,10 @@ body::-webkit-scrollbar {
   }
 
 .nska{
-  text-shadow: rgb(114, 61, 163) 1px -2px 3px, rgb(50, 48, 48) 1px -1px 3px;
+  text-shadow: rgb(10, 35, 110) 1px -2px 3px, rgb(0, 0, 0) 1px -1px 3px;
+}
+.nska_footer{
+  text-shadow: rgb(9, 87, 93) 1px -2px 3px, rgb(0, 0, 0) 1px -1px 3px;
 }
 ::selection {
     color: rgb(201, 211, 63);

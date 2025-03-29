@@ -64,7 +64,7 @@ function Sensei({ userr, onDelete }) {
                         </a>
                       ) : (
                         <span>No certificate available</span>
-                      )}</p>
+                      )}</p>   
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

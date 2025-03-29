@@ -10,15 +10,15 @@ function second() {
     AOS.init({ duration: 900 });
   }, []);
   return (
-    <div className=" bg-neutral-900 bg-opacity-95 text-white justify-center">
+    <div className=" bg-[#10405c] font-serif bg-opacity text-white justify-center">
       <div className="text-center mb-10">
-        <h3 className="pt-5 lg:text-[2vw] text-[4vw]">
+        <h3 className="pt-5 lg:text-[2vw] text-[4vw]" >
           Why Choose Us ?
         </h3>
-        <h1 className="lg:text-[3vw] text-[6vw] p-2 " data-aos="fade-down">
+        <h1 className="lg:text-[3vw] text-[6vw] p-2 ">
           1. Our Mission
         </h1>
-        <h2 className="lg:text-[1.2vw] text-[3vw] " data-aos="fade-down">
+        <h2 className="lg:text-[1.2vw] text-[3vw] " >
           {/* At KOUSHUKU, */}
            Our mission is to empower individuals of all ages and
           abilities to <br /> achieve their fullest potential through the
@@ -27,7 +27,7 @@ function second() {
           are paramount.
         </h2>
       </div>
-      <div className="text-center mb-10" data-aos="fade-down">
+      <div className="text-center mb-10" >
         <h1 className="lg:text-[3vw] text-[6vw] p-2 ">2. Our Experience</h1>
         <h2 className="lg:text-[1.2vw] text-[3vw] ">
           With over 20 Years of experience in the martial arts industry, our
@@ -37,7 +37,7 @@ function second() {
           goals.
         </h2>
       </div>
-      <div className="text-center mb-10" data-aos="fade-down">
+      <div className="text-center mb-10">
         <h1 className="lg:text-[3vw] text-[6vw] p-2 ">3.Training Approach</h1>
         <h2 className="lg:text-[1.2vw] text-[3vw] ">
           We believe in a holistic approach to martial arts
@@ -47,7 +47,7 @@ function second() {
           and cultivate a mindset of perseverance and self-discipline.
         </h2>
       </div>
-      <div className="text-center mb-10" data-aos="fade-down">
+      <div className="text-center mb-10" >
         <h1 className="lg:text-[3vw] text-[6vw] p-2 ">
           4.Community and Culture
         </h1>
@@ -59,10 +59,10 @@ function second() {
           dojo.
         </h2>
       </div>
-      <div className="text-center pb-6 " data-aos="fade-down">
+      <div className="text-center pb-6 ">
         <NavLink
         to="/contact"
-        className="b2 bg-gray-900 w-[30vw] lg:w-[10vw] rounded-xl border text-white p-3">
+        className="b2 bg-[#002C46] w-[30vw] lg:w-[10vw] rounded-xl border text-white p-3">
           Get Started
         </NavLink>
       </div>

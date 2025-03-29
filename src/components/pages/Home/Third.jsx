@@ -37,13 +37,13 @@ function Third() {
 
   return (
     <>
-      <div className="bg-zinc-600 text-center lg:text-[3vw] text-[7vw]">
-        <h1 className="koushuku font-serif" data-aos="fade-down">
+      <div className="bg-[#1f4c66] text-center font-serif lg:text-[3vw] text-[7vw]">
+        <h1 className="nska font-serif" data-aos="fade-down">
           Our Numbers
         </h1>
         <div ref={triggerRef} className="flex flex-col lg:flex-row lg:justify-around lg:mx-auto lg:space-y-0 am:ml-0 ml-[30vw] text-center space-y-10 pt-2 pb-10">
           <div
-            className="bg-slate-900 hover:bg-slate-500 cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
+            className="bg-[#102c56] hover:bg-[#19345c] cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
             data-aos="fade-down"
           >
             <h1 className="lg:pt-8 pt-5 text-white lg:text-[2.4vw] text-[6vw]">
@@ -55,7 +55,7 @@ function Third() {
             </p>
           </div>
           <div
-            className="bg-slate-900 hover:bg-slate-500 cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
+            className="bg-[#102c56] hover:bg-[#19345c] cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
             data-aos="fade-down"
           >
             <h1 className="lg:pt-8 pt-5 text-white lg:text-[2.4vw] text-[6vw]">
@@ -67,11 +67,11 @@ function Third() {
             </p>
           </div>
           <div
-            className="bg-slate-900 hover:bg-slate-500 cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
+            className="bg-[#102c56] hover:bg-[#19345c] cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
             data-aos="fade-down"
           >
             <h1 className="lg:pt-8 pt-5 text-white lg:text-[2.4vw] text-[6vw]">
-              {count && <CountUp start={0} end={50} duration={6.75}></CountUp>}
+              {count && <CountUp start={0} end={13} duration={6.75}></CountUp>}
               +
             </h1>
             <p className="text-slate-300 lg:text-[1.2vw] text-[3vw]">
@@ -79,15 +79,15 @@ function Third() {
             </p>
           </div>
           <div
-            className="bg-slate-900 hover:bg-slate-500 cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
+            className="bg-[#102c56] hover:bg-[#19345c] cursor-pointer lg:h-[10vw] h-[25vw] lg:w-[16vw] w-[40vw] rounded-lg"
             data-aos="fade-down"
           >
             <h1 className="lg:pt-8 pt-5 text-white lg:text-[2.4vw] text-[6vw]">
-              {count && <CountUp start={0} end={80} duration={5.75}></CountUp>}
-              %
+              {count && <CountUp start={0} end={40} duration={5.75}></CountUp>}
+              +
             </h1>
             <p className="text-slate-300 lg:text-[1.2vw] text-[3vw]">
-              Success Rate in Competitions
+             Trained Schools
             </p>
           </div>
         </div>

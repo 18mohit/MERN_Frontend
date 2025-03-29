@@ -1,14 +1,55 @@
 import React from "react";
 import h2 from "@/assets/H2.jpg"
+import Bodhidharma from "@/assets/Bodhidharma.jpg"
 import h1 from "@/assets/H1.jpeg"
 
 function History() {
   return (
     <div>
-      <div className="bg-slate-500">
-        <h1 className=" sm:text-[2vw] text-[5vw] font-semibold bg-slate-900 sm:max-w-[15vw] max-w-[35vw] rounded-tl rounded-bl rounded-3xl border-gray-500 ">
-          <span className=" p-2 ml-[2vw]">Our History</span>
+      <div className="bg-[#1f4c66] font-serif">
+        <h1 className="flex justify-center items-center nska text-black sm:text-[2vw] text-[5vw] font-semibold mx-auto">
+          <span className="p-2 ml-[2vw]">History of Martial Arts</span>
         </h1>
+        <div className="sm:flex sm:flex-row font-serif pt-3 ">
+          <div>
+            <h1 className=" sm:max-w-[75vw] ml-[2vw] sm:text-[1.2vw] text-[5vw] ">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <a href="https://en.wikipedia.org/wiki/Bodhidharma" target="_blank" className="text-black text-xl
+               font-extrabold underline">
+                <samp>Bodhidharma</samp>{" "}
+              </a>
+                was a semi-legendary Buddhist monk who lived during the 5th or 6th century CE. He is traditionally credited as the transmitter of Chan Buddhism to China, and is regarded as its first Chinese patriarch. He is also popularly regarded as the founder of{" "}
+                <a href="https://en.wikipedia.org/wiki/Shaolin_kung_fu" target="_blank" className="text-black font-semibold underline">
+                <samp>Shaolin kung fu</samp>{" "}
+                </a>
+                Shaolin kung fu, an idea popularized in the 20th century, but based on the 17th century Yijin Jing and the Daoist association of daoyin gymnastics with Bodhidharma.{" "}
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                Little contemporary biographical information on Bodhidharma is extant, and subsequent accounts became layered with legend and unreliable details. According to the principal Chinese sources, Bodhidharma came from the Western Regions, which typically refers to Central Asia but can also include the Indian subcontinent, and is described as either a "Persian Central Asian" or a "
+                <a href="https://en.wikipedia.org/wiki/South_India" target="_blank" className="text-black font-semibold underline">
+                <samp>South Indian</samp>{" "}
+                </a>
+                 the third son of a great Indian king." Aside from the Chinese accounts, several popular traditions also exist regarding Bodhidharma's origins. Throughout Buddhist art, Bodhidharma is depicted as an ill-tempered, large-nosed, profusely-bearded, wide-eyed non-Chinese person. He is referred to as "The Blue-Eyed Barbarian" (Chinese: 碧眼胡; pinyin: Bìyǎnhú) in Chan texts.
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                 Daoxuan adds more detail concerning Bodhidharma's origins, writing that he was of {" "}
+                 <a href="https://en.wikipedia.org/wiki/South_India" target="_blank" className="text-black font-semibold underline">
+                <samp>"South Indian Brahman stock"</samp>{" "}
+                </a>
+                  (南天竺婆羅門種 nán tiānzhú póluómén zhŏng).
+                  more detail is provided concerning Bodhidharma's journeys. Tanlin's original is imprecise about Bodhidharma's travels, saying only that he "crossed distant mountains and seas" before arriving in Wei. Daoxuan's account, however, implies "a specific itinerary": "He first arrived at Nan-yüeh during the Sung period. From there, he turned north and came to the Kingdom of Wei" This implies that Bodhidharma had {" "}
+                  <a href="https://en.wikipedia.org/wiki/Yangtze" target="_blank" className="text-black font-semibold underline">
+                <samp>travelled to China</samp>{" "}
+                </a>
+                  by sea and that he had crossed over the Yangtze.
+                  Daoxuan suggests a date for Bodhidharma's arrival in China. He writes that Bodhidharma makes landfall in the time of the Song, thus making his arrival no later than the time of the Song's fall to the Southern Qi in 479.
+              </h1>
+          </div>
+          <div>
+            <img className="sm:w-[20vw] w-[80vw] sm:ml-[1vw] ml-[10vw] " src={Bodhidharma} alt="img" />
+          </div>
+        </div>
+
         <div className="sm:flex sm:flex-row font-serif pt-3 ">
           <div>
             <img className="sm:w-[20vw] w-[80vw] sm:ml-[1vw] ml-[10vw] " src={h2} alt="img" />
@@ -22,7 +63,7 @@ function History() {
               Okinawan karate master c. 1938 Also known as Karate-do (空手道)
               Focus Striking Hardness Full-contact, semi-contact, light-contact
               Country of origin{" "}
-              <a href="https://en.wikipedia.org/wiki/Ryukyu_Kingdom" target="_blank" className="text-blue-950 font-semibold underline">
+              <a href="https://en.wikipedia.org/wiki/Ryukyu_Kingdom" target="_blank" className="text-black font-semibold underline">
                 <samp>Ryukyu Kingdom</samp>
               </a>
               (Present day Okinawa prefecture, Japan) Parenthood Kenpo,
@@ -35,7 +76,7 @@ function History() {
               Characteristics Contact Yes Mixed-sex Varies Type Martial art
               Presence Country or region Worldwide Olympic 2020 World Games 1981
               – present Karate "Karate" in 
-              <a href="https://en.wikipedia.org/wiki/Kanji" target="_blank" className="text-blue-950 font-semibold underline">
+              <a href="https://en.wikipedia.org/wiki/Kanji" target="_blank" className="text-black font-semibold underline">
               <span>kanji</span>
               </a>
              Japanese name Kanji 空手
@@ -45,7 +86,7 @@ function History() {
               martial art developed in the Ryukyu Kingdom. It developed from the
               indigenous Ryukyuan martial arts (called te (手), "hand"; tī in
               Okinawan) under the influence of 
-              <a href="https://en.wikipedia.org/wiki/Chinese_martial_arts" target="_blank" className="text-blue-950 font-semibold underline">
+              <a href="https://en.wikipedia.org/wiki/Chinese_martial_arts" target="_blank" className="text-black font-semibold underline">
               <span>Chinese martial arts.</span>  
               </a>
               [1][2] While
@@ -63,11 +104,11 @@ function History() {
               popularity after 1905, when it began to be taught in schools in
               Okinawa. During the Taishō era (1912–1926), karate was introduced
               to mainland Japan by Gichin
-              <a href="https://en.wikipedia.org/wiki/Gichin_Funakoshi" target="_blank" className="text-blue-950 font-semibold underline">
+              <a href="https://en.wikipedia.org/wiki/Gichin_Funakoshi" target="_blank" className="text-black font-semibold underline">
               <span>Funakoshi</span>
               </a>
             and 
-              <a href="https://en.wikipedia.org/wiki/Motobu_Ch%C5%8Dki" target="_blank" className="text-blue-950 font-semibold underline">
+              <a href="https://en.wikipedia.org/wiki/Motobu_Ch%C5%8Dki" target="_blank" className="text-black font-semibold underline">
               <span>Motobu Chōki.</span>
               </a>
                 Karate's
@@ -86,7 +127,7 @@ function History() {
               of Sakugawa. Matsumura's style later became the origin of many
               Shuri-te schools. <br /> Itosu Ankō (1831–1915) studied under
               Matsumura and Bushi Nagahama of Naha-te.[51] He created the 
-              <a href="https://en.wikipedia.org/wiki/Pinan" target="_blank" className="text-blue-950 font-semibold underline">
+              <a href="https://en.wikipedia.org/wiki/Pinan" target="_blank" className="text-black font-semibold underline">
               <span>Pin'an</span>
               </a>
               forms ("Heian" in Japanese) which are simplified kata for
@@ -97,11 +138,11 @@ function History() {
               karate. His students became some of the most well-known karate
               masters, including Motobu Chōyū, Motobu Chōki, Yabu Kentsū,
               Hanashiro Chōmo,
-              <a href="https://en.wikipedia.org/wiki/Gichin_Funakoshi" target="_blank" className="text-blue-950 font-semibold underline">
+              <a href="https://en.wikipedia.org/wiki/Gichin_Funakoshi" target="_blank" className="text-black font-semibold underline">
               <span>Gichin Funakoshi</span>
               </a>
                 and 
-                <a href="https://en.wikipedia.org/wiki/Kenwa_Mabuni" target="_blank" className="text-blue-950 font-semibold underline">
+                <a href="https://en.wikipedia.org/wiki/Kenwa_Mabuni" target="_blank" className="text-black font-semibold underline">
               <span>Kenwa Mabuni.</span>
               </a>
                  Itosu is

@@ -1,285 +1,130 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo2.jpeg";
-import punch from "../../assets/punch.jpeg";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { Button } from "../ui/button";
-import { LogOut, User2 } from "lucide-react";
-import { toast } from "sonner";
-import axios from "axios";
-import { USER_API_END_POINT } from "@/context/contex";
-import { setUser } from "@/store/authSlice";
+"use client"
+
+import { useState, useEffect } from "react"
+import { NavLink } from "react-router-dom"
+import { Menu, X } from "lucide-react"
+import logo from "@/assets/logo1.jpeg" // Adjust the path to your logo
 
 function Header() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { user } = useSelector((store) => store.auth);
-  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isNavVisible, setIsNavVisible] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  const toggleNavVisibility = () => {
-    setIsNavVisible((prev) => !prev);
-  };
+  // Handle scroll effect (adds shadow, does NOT fix position)
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
 
-  const logoutHandler = async () => {
-    try {
-      const res = await axios.get(`${USER_API_END_POINT}/logout`, {
-        withCredentials: true,
-      });
-      if (res && res.data && res.data.success) {
-        dispatch(setUser(null));
-        navigate("/");
-        toast.success(res.data.message);
-      }
-    } catch (error) {
-      console.log("logout error", error);
-      if (error.response && error.response.data) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Logout failed. Please try again.");
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // Close mobile menu when resizing to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsNavVisible(false)
       }
     }
-  };
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   return (
-    <header className="bg-gray-800 text-white">
-      <div className="flex flex-col sm:flex-row items-center justify-between px-[1.5vw] py-4">
-        <div className="sm:hidden flex items-center mb-4 sm:mb-0">
-          <NavLink to="/" className="text-white">
-            <img
-              src={logo}
-              alt="Logo"
-              className="h-[30vw] w-[30vw] rounded-full inline"
-            />
-          </NavLink>
-        </div>
-        <div className="hidden sm:flex items-center">
-          <NavLink to="/" className="text-white">
-            <img
-              src={logo}
-              alt="Martial Arts Logo"
-              className="h-16 sm:h-[8vw] sm:w-[8.8vw] rounded-full inline"
-            />
-          </NavLink>
-        </div>
-        <div className="text-center w-full">
-          <h1 className="sm:text-[2vw] text-slate-950 font-serif nska text-[5vw] font-bold">
-            ABX School of Martial arts
-          </h1>
-          <div className="flex justify-center gap-2 nska" >
-            <h2 className="sm:text-[1vw] text-[2.5vw] font-mono">
-            {/* 5<sup>th</sup> Dan Black Belt */}
-            </h2>
-            <h2 className="sm:text-[1vw] text-[2.5vw] font-mono">
-              {/* (NSKA) */}
-            </h2>
+    <header
+      className={`bg-[#10405c] text-white py-3`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <NavLink
+              to="/"
+              className="relative h-10 w-10 md:h-20 md:w-20 overflow-hidden rounded-full"
+            >
+              {/* Replace with your actual logo */}
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold"> */}
+                <img className="w-full h-full object-cover" src={logo} alt="Logo" />
+              {/* </div> */}
+            </NavLink>
+            <h1 className="text-lg md:text-xl font-bold font-serif hidden md:block">Koutsuku Martial Arts</h1>
           </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:block">
+            <ul className="flex items-center space-x-8">
+              {[
+                { name: "Home", path: "/" },
+                { name: "About Us", path: "/about" },
+                { name: "Photo Gallery", path: "/mygallery" },
+                { name: "Our Team", path: "/team" },
+                { name: "Contact", path: "/contact" },
+              ].map((item, index) => (
+                <li key={index}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `relative py-2 px-1 text-md font-medium transition-colors group ${
+                        isActive ? "text-yellow-400" : "hover:text-yellow-400"
+                      } `
+                    }
+                  >
+                    {item.name}
+                    <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsNavVisible(!isNavVisible)}
+            className="md:hidden text-white focus:outline-none relative z-20"
+            aria-label={isNavVisible ? "Close menu" : "Open menu"}
+            aria-expanded={isNavVisible}
+          >
+            {isNavVisible ? <X size={40} /> : <Menu size={40} />}
+          </button>
         </div>
       </div>
 
-      <div className="container mx-auto flex justify-between items-center px-[1.5vw]">
-        <nav className="sm:flex flex-wrap sm:ml-auto w-full sm:w-auto">
-          <div className="sm:hidden flex justify-between">
-            <img
-              src={punch}
-              alt="Toggle navigation"
-              onClick={toggleNavVisibility}
-              className="cursor-pointer h-[11vw] w-[11vw] rounded-full"
-            />
-            <div className=" text-wrap items-center">
-              {!user ? (
-                <div className="items-center sm:-mt-2 mt-0">
-                  <NavLink to="/login">
-                    <Button className="w-[15vw] text-wrap sm:w-[6vw] bg-slate-50 text-black hover:bg-slate-200">
-                      Login
-                    </Button>
-                  </NavLink>
-                  <NavLink to="/signup">
-                    <Button className="w-[15vw] text-wrap sm:w-[6vw]">
-                      SignUp
-                    </Button>
-                  </NavLink>
-                </div>
-              ) : (
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Avatar className="cursor-pointer">
-                      <AvatarImage src={user.photo} />
-                    </Avatar>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-80">
-                    <div className="flex gap-10 ">
-                      <Avatar className="cursor-pointer">
-                        <AvatarImage src={user.photo} />
-                      </Avatar>
-                      <div>
-                        <h1 className="font-medium">{user.fullname}</h1>
-                        <h1 className="font-medium text-gray-500">
-                          {user.role}
-                        </h1>
-                      </div>
-                    </div>
-                    <div className="flex flex-col ">
-                      <div className="flex items-center">
-                        <User2 />
-                        <NavLink to="/profile">
-                          <Button
-                            variant="link"
-                            className="font-medium text-gray-500"
-                          >
-                            View Profile
-                          </Button>
-                        </NavLink>
-                      </div>
-                      <div className="flex items-center">
-                        <LogOut />
-                        <Button
-                          onClick={logoutHandler}
-                          variant="link"
-                          className="font-medium text-gray-500"
-                        >
-                          Logout
-                        </Button>
-                      </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              )}
-            </div>
-          </div>
-          {isNavVisible && (
-            <ul className="flex flex-col sm:flex-row sm:flex-wrap text-[5vw] sm:text-[1.4vw] ml-[1vw] sm:space-x-8">
-              <li>
+      {/* Mobile Navigation - Positioned below menu icon on RIGHT side */}
+      <div
+        className={`md:hidden absolute right-0 w-64 bg-[#072638] shadow-lg transition-all duration-300 ease-in-out z-10 ${
+          isNavVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+        style={{ top: "calc(100% - 90%)" }}
+      >
+        <nav className="py-3 px-4 border-t border-white/10">
+          <ul className="flex flex-col space-y-2">
+            {[
+              { name: "Home", path: "/" },
+              { name: "About Us", path: "/about" },
+              { name: "Photo Gallery", path: "/mygallery" },
+              { name: "Our Team", path: "/team" },
+              { name: "Contact", path: "/contact" },
+            ].map((item, index) => (
+              <li key={index} className="border-b border-white/10 pb-2">
                 <NavLink
-                  to="/"
+                  to={item.path}
                   className={({ isActive }) =>
-                    isActive
-                      ? "text-yellow-400 hover:text-yellow-400"
-                      : "hover:text-yellow-400"
+                    `block py-2 text-base font-medium transition-colors ${
+                      isActive ? "text-yellow-400" : "hover:text-yellow-400"
+                    }`
                   }
+                  onClick={() => setIsNavVisible(false)}
                 >
-                  Home
+                  {item.name}
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-yellow-400 hover:text-yellow-400"
-                      : "hover:text-yellow-400"
-                  }
-                >
-                  About Us
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/mygallery"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-yellow-400 hover:text-yellow-400"
-                      : "hover:text-yellow-400"
-                  }
-                >
-                  Photo Gallery
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/team"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-yellow-400 hover:text-yellow-400"
-                      : "hover:text-yellow-400"
-                  }
-                >
-                  Our Team
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-yellow-400 hover:text-yellow-400"
-                      : "hover:text-yellow-400"
-                  }
-                >
-                  Contact
-                </NavLink>
-              </li>
-              <li className="sm:flex hidden  items-center">
-                {!user ? (
-                  <div className="items-center sm:-mt-2 mt-0">
-                    <NavLink to="/login">
-                      <Button className="w-[15vw] text-wrap sm:w-[6vw] bg-slate-50 text-black hover:bg-slate-200">
-                        Login
-                      </Button>
-                    </NavLink>
-                    <NavLink to="/signup">
-                      <Button className="w-[15vw] text-wrap sm:w-[6vw]">
-                        SignUp
-                      </Button>
-                    </NavLink>
-                  </div>
-                ) : (
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Avatar className="cursor-pointer">
-                        <AvatarImage src={user.photo} />
-                      </Avatar>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-80">
-                      <div className="flex gap-10 ">
-                        <Avatar className="cursor-pointer">
-                          <AvatarImage src={user.photo} />
-                        </Avatar>
-                        <div>
-                          <h1 className="font-medium">{user.fullname}</h1>
-                          <h1 className="font-medium text-gray-500">
-                            {user.role}
-                          </h1>
-                        </div>
-                      </div>
-                      <div className="flex flex-col ">
-                        <div className="flex items-center">
-                          <User2 />
-                          <NavLink to="/profile">
-                            <Button
-                              variant="link"
-                              className="font-medium text-gray-500"
-                            >
-                              View Profile
-                            </Button>
-                          </NavLink>
-                        </div>
-                        <div className="flex items-center">
-                          <LogOut />
-                          <Button
-                            onClick={logoutHandler}
-                            variant="link"
-                            className="font-medium text-gray-500"
-                          >
-                            Logout
-                          </Button>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                )}
-              </li>
-            </ul>
-          )}
+            ))}
+          </ul>
         </nav>
       </div>
     </header>
-  );
+  )
 }
 
 export default Header;
