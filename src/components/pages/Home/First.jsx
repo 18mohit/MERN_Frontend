@@ -49,6 +49,12 @@ function First() {
             </span>
             <span> Take Knowledge of Weapons. </span>
           </div>
+          <div className="flex mt-4 font-serif ">
+            <span className="mt-1 mr-1">
+              <RiArrowRightSFill />
+            </span>
+            <span> Learn importance of Yoga & Meditation. </span>
+          </div>
           <div className="flex mt-4 font-serif">
             <span className="mt-1 mr-1">
               <RiArrowRightSFill />
